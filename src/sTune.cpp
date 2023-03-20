@@ -501,7 +501,7 @@ uint8_t sTune::GetTuningMethod() {
   return static_cast<uint8_t>(_tuningMethod);
 }
 
-float sTune::softPwm(const uint8_t relayPin, float input, float output, float setpoint, uint32_t windowSize, uint8_t debounce) {
+float sTune::softPwm(const uint8_t relayPin, float input, float output, float setpoint, uint32_t windowSize, uint8_t debounce, bool invertOutput = false) {
 
   // software PWM timer
   uint32_t msNow = millis();
@@ -525,13 +525,13 @@ float sTune::softPwm(const uint8_t relayPin, float input, float output, float se
     if (msNow > nextSwitchTime) {
       nextSwitchTime = msNow + debounce;
       relayStatus = true;
-      digitalWrite(relayPin, HIGH);
+      digitalWrite(relayPin, invertOutput ? LOW : HIGH);
     }
   } else if (relayStatus && optimumOutput < (msNow - windowStartTime)) {
     if (msNow > nextSwitchTime) {
       nextSwitchTime = msNow + debounce;
       relayStatus = false;
-      digitalWrite(relayPin, LOW);
+      digitalWrite(relayPin, invertOutput ? HIGH : LOW);
     }
   }
   return optimumOutput;
