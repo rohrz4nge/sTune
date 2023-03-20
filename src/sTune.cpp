@@ -501,7 +501,7 @@ uint8_t sTune::GetTuningMethod() {
   return static_cast<uint8_t>(_tuningMethod);
 }
 
-float sTune::softPwm(const uint8_t relayPin, float input, float output, float setpoint, uint32_t windowSize, uint8_t debounce, bool invertOutput = false) {
+float sTune::softPwm(const uint8_t relayPin, float input, float output, float setpoint, uint32_t windowSize, uint8_t debounce, bool invertOutput) {
 
   // software PWM timer
   uint32_t msNow = millis();
