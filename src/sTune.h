@@ -25,7 +25,7 @@ class sTune {  // Inflection Point Autotuner
     void printTunings();
     void printPidTuner(uint8_t everyNth);
     void plotter(float input, float output, float setpoint, float outputScale = 1, uint8_t everyNth = 1);
-    float softPwm(const uint8_t relayPin, float input, float output, float setpoint = 0, uint32_t windowSize = 1000, uint8_t debounce = 0);
+    float softPwm(const uint8_t relayPin, float input, float output, float setpoint = 0, uint32_t windowSize = 1000, uint8_t debounce = 0, bool invertOutput = false);
 
     // Set functions
     void SetEmergencyStop(float e_Stop);
